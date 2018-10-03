@@ -1,8 +1,8 @@
 {
-  "name": "pizzajs",
+  "name": "schnitzljs",
   "version": "1.0.0",
   "description": "A random testdata generator.",
-  "main": "pizza.js",
+  "main": "schnitzl.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build && npm run test",
     "dev": "webpack --progress --colors --watch --env dev",
