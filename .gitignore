@@ -14,3 +14,7 @@ package-lock.json
 
 # editor specific
 .vscode/
+
+# dev versions of lib
+lib/schnitzlJS.js
+lib/schnitzlJS.js.map
