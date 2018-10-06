@@ -8,7 +8,7 @@ const expect = chai.expect;
 
 describe('SchnitzlJS Person...', () => {
 
-    describe('can generate names', () => {
+    describe('can generate names...', () => {
 
         it('should generate a prename', () => {
             expect(Person.prename()).not.to.be.empty
@@ -145,6 +145,28 @@ describe('SchnitzlJS Person...', () => {
         it('for a senior as string', () => {
             _.times(100, () => {
                 expect(Person.randomBirthday(true, 'senior')).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
+            })
+        })
+
+        it('should throw a TypeError for an unknown age group', () => {
+            expect(() => Person.randomBirthday(false, 'unknown')).to.throw(TypeError)
+            expect(() => Person.randomBirthday(true, 'unknown')).to.throw(TypeError)
+        })
+
+    })
+
+    describe('can generate a gender...', () => {
+
+        it('generates a random gender', () => {
+            _.times(100, () => {
+                expect(Person.randomGender()).to.be.oneOf(['female', 'male'])
+            })
+        })
+
+        it('generated a radnom gender with given extra genders', () => {
+            const extraGenders = ['Agender', 'Genderqueer', 'Trans', 'Pangender']
+            _.times(100, () => {
+                expect(Person.randomGender(extraGenders)).to.be.oneOf(extraGenders.concat(['female', 'male']))
             })
         })
 

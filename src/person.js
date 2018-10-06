@@ -46,3 +46,8 @@ export const randomBirthday = (asString = false, ageGroup = 'child') => {
 
     return randomDate;
 };
+
+export const randomGender = (additionalGenders = []) => {
+    const genders = additionalGenders.concat(['female', 'male']);
+    return randomElementInArray(genders);
+};
