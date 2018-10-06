@@ -172,4 +172,24 @@ describe('SchnitzlJS Person...', () => {
 
     })
 
+    describe('can generate a name prefix', () => {
+
+        it('generates english name prefixes by default', () => {
+            _.times(100, () => {
+                expect(Person.randomNamePrefix()).to.be.oneOf(['Mr', 'Mrs', 'Ms', 'Miss'])
+            })
+        })
+
+        it('generates german name prefixes', () => {
+            _.times(100, () => {
+                expect(Person.randomNamePrefix('germany')).to.be.oneOf(['Herr', 'Frau'])
+            })
+        })
+
+        it('throws an error if an unknown country is requested', () => {
+            expect(() => Person.randomNamePrefix('unknown')).to.throw(RangeError)
+        })
+
+    })
+
 })

@@ -51,3 +51,19 @@ export const randomGender = (additionalGenders = []) => {
     const genders = additionalGenders.concat(['female', 'male']);
     return randomElementInArray(genders);
 };
+
+export const randomNamePrefix = (country = 'england') => {
+    let prefixes;
+    switch (country) {
+        case 'england':
+            prefixes = ['Mr', 'Mrs', 'Ms', 'Miss'];
+            break;
+        case 'germany':
+            prefixes = ['Herr', 'Frau'];
+            break;
+        default:
+            throw new RangeError('No prefixes for this country yet, my friend!');
+    }
+
+    return randomElementInArray(prefixes);
+};
