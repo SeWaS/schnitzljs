@@ -9,9 +9,6 @@ logs
 *.log
 npm-debug.log*
 
-# npm
-package-lock.json
-
 # editor specific
 .vscode/
 
