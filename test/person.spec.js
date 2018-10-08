@@ -192,4 +192,19 @@ describe('SchnitzlJS Person...', () => {
 
     })
 
+    describe('can generate an email address', () => {
+
+        it('generates an email address with default options', () => {
+            _.times(100, () => {
+                expect(Person.randomEmail()).to.match(/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+            })
+        })
+
+        it('generates an email address with given tld', () => {
+            _.times(100, () => {
+                expect(Person.randomEmail('com')).to.match(/(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+com))$/)
+            })
+        })
+    })
+
 })

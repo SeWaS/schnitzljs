@@ -4,25 +4,6 @@ export const randomInt = (min = 0, max = 100) => Math.floor(Math.random() * (max
 
 export const randomDigit = () => randomInt(0, 9);
 
-// generating strings
-
-const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZäöüÄÖÜß';
-
-export const randomChar = () => {
-    const randomNum = randomInt(0, alphabet.length - 1);
-    return alphabet.charAt(randomNum);
-};
-
-export const randomString = (length = 7) => {
-    let randomStr = '123';
-    while (randomStr.length < length) {
-        randomStr += randomChar();
-    }
-    return randomStr;
-};
-
-export const randomBoolean = () => randomInt(1, 9) % 2 === 0;
-
 // Arrays
 
 export const randomElementInArray = (array) => {
@@ -34,3 +15,27 @@ export const randomPickFromArray = (num, array) => {
     if (num < 1) throw new RangeError('We can\'t choose a random subset of values of size 0 from an array, my friend!');
     return [...Array(num)].map(x => randomElementInArray(array));
 };
+
+// generating strings
+
+const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZäöüÄÖÜß';
+
+export const randomChar = (pool = alphabet) => {
+    const randomNum = randomInt(0, pool.length - 1);
+    return pool.charAt(randomNum);
+};
+
+export const randomString = (length = 7, pool = alphabet) => {
+    return [...Array(length)].reduce((acc, _) => acc + randomChar(pool), '');
+};
+
+export const randomUniqueString = (length = 7, pool = alphabet) => {
+    let editedPool = [...pool];
+    return [...Array(length)].reduce((acc, _) => {
+        let c = randomElementInArray(editedPool);
+        editedPool = editedPool.filter(f => f !== c);
+        return acc + c;
+    }, '');
+};
+
+export const randomBoolean = () => randomInt(1, 9) % 2 === 0;

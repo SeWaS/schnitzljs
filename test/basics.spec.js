@@ -49,6 +49,12 @@ describe('SchnitzlJS Basics...', () => {
             })
         })
 
+        it('only a char from a given pool string', () => {
+            _.times(100, () => {
+                expect(BasicRandoms.randomChar('abc')).to.match(/[a,b,c]/)
+            })
+        })
+
         it('with default length', () => {
             _.times(100, () => {
                 expect(BasicRandoms.randomString()).to.have.lengthOf(7)
@@ -58,6 +64,19 @@ describe('SchnitzlJS Basics...', () => {
         it('with given length', () => {
             _.times(100, () => {
                 expect(BasicRandoms.randomString(14)).to.have.lengthOf(14)
+            })
+        })
+
+        it('with given pool-string', () => {
+            _.times(100, () => {
+                expect(BasicRandoms.randomString(10, 'abc')).to.match(/[a,b,c]{10}/)
+            })
+        })
+
+        it('shouls generate a string with unique chars', () => {
+            _.times(100, () => {
+                const str = BasicRandoms.randomUniqueString()
+                expect(new Set(str).size).to.equal(str.length)
             })
         })
 

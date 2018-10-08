@@ -1,6 +1,9 @@
 import {
     randomInt,
-    randomElementInArray
+    randomElementInArray,
+    randomString,
+    randomChar,
+    randomUniqueString
 } from './basics';
 
 export const prename = () => {
@@ -66,4 +69,18 @@ export const randomNamePrefix = (country = 'england') => {
     }
 
     return randomElementInArray(prefixes);
+};
+
+export const randomEmail = (tld) => {
+    let topLevelDomain = tld ? tld : randomString(randomInt(2, 3), 'abcdefghijklmnopqrstuvwxyz');
+
+    return randomChar('abcdefghijklmnopqrstuvwxyz0123456789') +
+    randomString(10, 'abcdefghijklmnopqrstuvwxyz0123456789.-_') +
+    randomString(1, 'abcdefghijklmnopqrstuvwxyz') +
+    '@' +
+    randomChar('abcdefghijklmnopqrstuvwxyz0123456789') +
+    randomUniqueString(10, 'abcdefghijklmnopqrstuvwxyz0123456789.-') +
+    randomChar('abcdefghijklmnopqrstuvwxyz') +
+    '.' +
+    topLevelDomain;
 };
