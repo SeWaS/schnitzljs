@@ -63,13 +63,13 @@ describe('SchnitzlJS Basics...', () => {
 
         it('with given length', () => {
             _.times(100, () => {
-                expect(BasicRandoms.randomString(14)).to.have.lengthOf(14)
+                expect(BasicRandoms.randomString({ length : 14 })).to.have.lengthOf(14)
             })
         })
 
         it('with given pool-string', () => {
             _.times(100, () => {
-                expect(BasicRandoms.randomString(10, 'abc')).to.match(/[a,b,c]{10}/)
+                expect(BasicRandoms.randomString({ pool: 'abc' })).to.match(/[a,b,c]{7}/)
             })
         })
 

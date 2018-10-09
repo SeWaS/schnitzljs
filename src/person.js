@@ -33,7 +33,7 @@ export const randomAge = (ageGroup = 'child') => {
     return randomInt(ageGroupDef.get(ageGroup).minAge, ageGroupDef.get(ageGroup).maxAge);
 };
 
-export const randomBirthday = (asString = false, ageGroup = 'child') => {
+export const randomBirthday = ({ asString = false, ageGroup = 'child' } = {}) => {
     const now = new Date();
     const randomDate = new Date(
         now.getFullYear() - randomInt(ageGroupDef.get(ageGroup).minAge, ageGroupDef.get(ageGroup).maxAge),
@@ -72,14 +72,14 @@ export const randomNamePrefix = (country = 'england') => {
 };
 
 export const randomEmail = (tld) => {
-    let topLevelDomain = tld ? tld : randomString(randomInt(2, 3), 'abcdefghijklmnopqrstuvwxyz');
+    let topLevelDomain = tld ? tld : randomString({ length: randomInt(2, 3), pool: 'abcdefghijklmnopqrstuvwxyz' });
 
     return randomChar('abcdefghijklmnopqrstuvwxyz0123456789') +
-    randomString(10, 'abcdefghijklmnopqrstuvwxyz0123456789.-_') +
-    randomString(1, 'abcdefghijklmnopqrstuvwxyz') +
+    randomString({ length: 10, pool: 'abcdefghijklmnopqrstuvwxyz0123456789.-_'}) +
+    randomString({ length: 1, pool: 'abcdefghijklmnopqrstuvwxyz'}) +
     '@' +
     randomChar('abcdefghijklmnopqrstuvwxyz0123456789') +
-    randomUniqueString(10, 'abcdefghijklmnopqrstuvwxyz0123456789.-') +
+    randomUniqueString({ length: 10, pool: 'abcdefghijklmnopqrstuvwxyz0123456789.-' }) +
     randomChar('abcdefghijklmnopqrstuvwxyz') +
     '.' +
     topLevelDomain;

@@ -25,11 +25,11 @@ export const randomChar = (pool = alphabet) => {
     return pool.charAt(randomNum);
 };
 
-export const randomString = (length = 7, pool = alphabet) => {
+export const randomString = ({length = 7, pool = alphabet} = {}) => {
     return [...Array(length)].reduce((acc, _) => acc + randomChar(pool), '');
 };
 
-export const randomUniqueString = (length = 7, pool = alphabet) => {
+export const randomUniqueString = ({length = 7, pool = alphabet} = {}) => {
     let editedPool = [...pool];
     return [...Array(length)].reduce((acc, _) => {
         let c = randomElementInArray(editedPool);

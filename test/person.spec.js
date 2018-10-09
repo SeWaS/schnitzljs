@@ -75,7 +75,7 @@ describe('SchnitzlJS Person...', () => {
 
         it('for a child as string', () => {
             _.times(100, () => {
-                expect(Person.randomBirthday(true)).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
+                expect(Person.randomBirthday({ asString: true })).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
             })
         })
 
@@ -92,13 +92,13 @@ describe('SchnitzlJS Person...', () => {
                 now.getDay()
             )
             _.times(100, () => {
-                expect(Person.randomBirthday(false, 'teenager')).to.be.at.least(minTeen).and.at.most(maxTeen)
+                expect(Person.randomBirthday({ ageGroup: 'teenager' })).to.be.at.least(minTeen).and.at.most(maxTeen)
             })
         })
 
         it('for a teenager as string', () => {
             _.times(100, () => {
-                expect(Person.randomBirthday(true, 'teenager')).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
+                expect(Person.randomBirthday({ asString: true, ageGroup: 'teenager' })).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
             })
         })
 
@@ -115,13 +115,13 @@ describe('SchnitzlJS Person...', () => {
                 now.getDay()
             )
             _.times(100, () => {
-                expect(Person.randomBirthday(false, 'adult')).to.be.at.least(minAdult).and.at.most(maxAdult)
+                expect(Person.randomBirthday( {ageGroup: 'adult'} )).to.be.at.least(minAdult).and.at.most(maxAdult)
             })
         })
 
         it('for an adult as string', () => {
             _.times(100, () => {
-                expect(Person.randomBirthday(true, 'adult')).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
+                expect(Person.randomBirthday( {asString: true, ageGroup: 'adult'} )).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
             })
         })
 
@@ -138,19 +138,19 @@ describe('SchnitzlJS Person...', () => {
                 now.getDay()
             )
             _.times(100, () => {
-                expect(Person.randomBirthday(false, 'senior')).to.be.at.least(minSenior).and.at.most(maxSenior)
+                expect(Person.randomBirthday({ asString: false, ageGroup: 'senior' })).to.be.at.least(minSenior).and.at.most(maxSenior)
             })
         })
 
         it('for a senior as string', () => {
             _.times(100, () => {
-                expect(Person.randomBirthday(true, 'senior')).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
+                expect(Person.randomBirthday({ asString: true, ageGroup: 'senior' })).to.match(/[0-9]{2}\/[0-9]{2}\/[1-2][0-9]{3}/)
             })
         })
 
         it('should throw a TypeError for an unknown age group', () => {
-            expect(() => Person.randomBirthday(false, 'unknown')).to.throw(TypeError)
-            expect(() => Person.randomBirthday(true, 'unknown')).to.throw(TypeError)
+            expect(() => Person.randomBirthday( {ageGroup: 'unknown'} )).to.throw(TypeError)
+            expect(() => Person.randomBirthday( {asString: true, ageGroup: 'unknown' })).to.throw(TypeError)
         })
 
     })
