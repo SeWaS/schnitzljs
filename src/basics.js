@@ -12,8 +12,6 @@ export const randomPickFromArray = (num, array) => {
     return [...Array(num)].map(x => randomElementInArray(array));
 };
 
-// generating strings
-
 const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZäöüÄÖÜß';
 
 export const randomChar = (pool = alphabet) => {
