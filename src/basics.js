@@ -2,8 +2,6 @@ export const randomInt = (min = 0, max = 100) => Math.floor(Math.random() * (max
 
 export const randomDigit = () => randomInt(0, 9);
 
-// Arrays
-
 export const randomElementInArray = (array) => {
     if (!array.length > 0) throw new RangeError('We can\'t choose a random value from an empty array, my friend!');
     return array[randomInt(0, array.length - 1)];
